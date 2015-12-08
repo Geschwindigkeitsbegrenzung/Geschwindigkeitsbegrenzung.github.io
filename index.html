@@ -92,28 +92,24 @@ $.getJSON("data/thp_districts.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
 
-$.getJSON("data/us_states.geojson",function(data){
-  L.geoJson(data, {style: myStyle2}).addTo(map);
-});
+//$.getJSON("data/us_states.geojson",function(data){
+//  L.geoJson(data, {style: myStyle2}).addTo(map);
+//});
 
-$.getJSON("data/mexico.geojson",function(data){
-  L.geoJson(data, {style: myStyle2}).addTo(map);
-});
+//$.getJSON("data/mexico.geojson",function(data){
+//  L.geoJson(data, {style: myStyle2}).addTo(map);
+//});
 
-$.getJSON("data/cuba.geojson",function(data){
-  L.geoJson(data, {style: myStyle2}).addTo(map);
-});
+//$.getJSON("data/cuba.geojson",function(data){
+//  L.geoJson(data, {style: myStyle2}).addTo(map);
+//});
 
 $.getJSON("data/HSA_30Oct15.geojson",function(data){
   L.geoJson(data, {
-    //style: function(feature){
-	//switch (feature.properties.THP){
-		//case '1': return thp;
-		//case '0': return pd;
-	  //}
-	//}
+    var thp = {radius: 5, fillColor: "#ffff00", color: "#000", weight: 1, opacity: 1, fillOpacity: 1};
+	var pd = {radius: 5, fillColor: "#ff0000", color: "#000", weight: 1, opacity: 1, fillOpacity: 1};
     pointToLayer: function(feature,latlng) {
-      var marker = L.circleMarker(latlng, setRadius(5));
+      var marker = L.circleMarker(latlng);
       marker.bindPopup('<b>THP District:  </b>' + feature.properties.Region + '<br/>' + '<b>Date:  </b>' + feature.properties.Date + '<br/>' + '<b>No. Killed:  </b>' + feature.properties.Killed + '<br/>' + '<b>City:  </b>' + feature.properties.City + '<br/>' + '<b>County:  </b>' + feature.properties.County);
       return marker;
     }
